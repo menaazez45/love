@@ -41,5 +41,28 @@
     <br>
     <button onclick="calculateLove()">Calculate</button>
     <div id="result"></div>
+    <br>
+    <button onclick="share()">مشاركة</button>
+
+    <script>
+        function share() {
+            // التحقق من إمكانية دعم مشاركة الويب
+            if (navigator.share) {
+                // المعلومات التي ستتم مشاركتها
+                const shareData = {
+                    title: ' لعبة معرفة نسبة الحب',
+                    text: 'لعبة معرفة نسبة الحب',
+                    url: 'https://love-rose-iota.vercel.app/', // الرابط الذي يتم مشاركته
+                };
+
+                // فتح نافذة المشاركة
+                navigator.share(shareData)
+                    .then(() => console.log('تمت المشاركة بنجاح.'))
+                    .catch((error) => console.error('حدث خطأ أثناء المشاركة:', error));
+            } else {
+                alert('عذرًا، مشاركة الويب غير مدعومة في هذا المستعرض.');
+            }
+        }
+    </script>
 </body>
 </html>
