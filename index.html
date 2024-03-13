@@ -1,8 +1,25 @@
+<?php
+
+  session_start();
+$token = bin2hex(random_bytes(32));
+$_SESSION['csrf_token'] = $token;
+echo '<input type="hidden" name="csrf_token" value="' . $token . '">';
+
+
+
+
+
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
     <meta name="google-site-verification" content="tnMdCt0vt_3-m3-T_TDKSp4FjS3XqdcdN8cuAtS7Ejo" />    <title>لعبة نسبة الحب</title>
     <h1>لعبة نسبة الحب</h1>
     <style>
@@ -44,6 +61,11 @@
     <button onclick="share()">مشاركة</button>
 
     <script>
+        function sanitizeInput(input) {
+            // قم بتنظيف البيانات المدخلة هنا
+            return cleanInput;
+          }
+          
         function share() {
             // التحقق من إمكانية دعم مشاركة الويب
             if (navigator.share) {
